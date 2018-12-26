@@ -2,7 +2,12 @@ package com.ygq.disk.controller;
 
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,5 +38,18 @@ public class FileController {
 		File dest = new File(rootPath + fileName);
 		logger.info("create file:{}", dest.getAbsolutePath());
 		file.transferTo(dest);
+	}
+	
+	@RequestMapping("download")
+	public void download(HttpServletResponse rsp, String file) throws IOException {
+		FileInputStream fis = new FileInputStream(rootPath + file);
+		ServletOutputStream outputStream = rsp.getOutputStream();
+		byte[] buff = new byte[1024];
+		int length;
+		while((length = fis.read(buff)) > 0) {
+			outputStream.write(buff, 0, length);
+		}
+		fis.close();
+		outputStream.close();
 	}
 }
