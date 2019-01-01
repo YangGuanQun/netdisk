@@ -15,7 +15,7 @@ public class IndexController {
 
     @RequestMapping("/")
     public String home(ModelMap map) throws Exception {
-        String cmd = "ipconfig";
+        String cmd = "ls -1 /file_repo/";
         Process proc = Runtime.getRuntime().exec(cmd);
         InputStream inputStream = proc.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
