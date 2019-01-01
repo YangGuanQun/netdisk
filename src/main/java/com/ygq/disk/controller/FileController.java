@@ -42,6 +42,7 @@ public class FileController {
 	@RequestMapping("download")
 	public void download(HttpServletResponse rsp, String file) throws IOException {
 		FileInputStream fis = new FileInputStream(rootPath + file);
+		rsp.setHeader("Content-Disposition", "attachment;filename=" + file);
 		ServletOutputStream outputStream = rsp.getOutputStream();
 		byte[] buff = new byte[1024];
 		int length;
