@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
+    @Value("${disk.dir}")
+    private String diskDir;
+    
     @RequestMapping("/")
     public String home(ModelMap map) throws Exception {
-        String cmd = "ls -1 /file_repo/";
+        String cmd = "ls -1 " + diskDir;
+        //String cmd = "F:/mock_exec.bat";
         Process proc = Runtime.getRuntime().exec(cmd);
         InputStream inputStream = proc.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));

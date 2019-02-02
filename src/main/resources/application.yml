@@ -6,7 +6,7 @@ server:
 spring:
   profiles: default
   freemarker:
-    template-loader-path: classpath:/webapp/WEB-INF/ftl/
+    template-loader-path: classpath:/static/ftl/
     cache: true
     check-template-location: true
     content-type: text/html; charset=UTF-8
@@ -14,3 +14,9 @@ spring:
     expose-session-attributes: true
     request-context-attribute: request
     suffix: .ftl
+    
+disk:
+  dir: /file_repo/
+
+logging:
+  config: classpath:logback-spring.xml
