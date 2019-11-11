@@ -2,13 +2,13 @@
 
 <configuration scan="true" scanPeriod="60 seconds">
 
-	<property name="log.path" value="/home/jbossuser/logs"></property>
+	<property name="log.path" value="/home/jbossuser/logs" />
 
 	<appender name="disk"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${log.path}/disk/disk.log</file>
 		<rollingPolicy
-			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<fileNamePattern>${log.path}/disk/disk-%d{yyyy-MM-dd}.%i.log
 			</fileNamePattern>
 			<maxFileSize>10MB</maxFileSize>

@@ -40,10 +40,5 @@ public class DiskApplication extends SpringBootServletInitializer {
         commonsMultipartResolver.setDefaultEncoding("UTF-8");
         return commonsMultipartResolver;
     }*/
-	
-	@Bean
-    public ServerEndpointExporter serverEndpointExporter() {
-        return new ServerEndpointExporter();
-    }
 }
 
