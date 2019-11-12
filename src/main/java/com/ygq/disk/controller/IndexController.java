@@ -39,7 +39,7 @@ public class IndexController {
     }
 
     private Map<String, List<String>> fetchFileName(String dir) throws Exception {
-        Map<String, List<String>> fileMap = new HashMap<>();
+        Map<String, List<String>> fileMap = new TreeMap<>(Comparator.reverseOrder());
         File dirFile = new File(dir);
         File[] files = dirFile.listFiles();
         if (null == files) {
