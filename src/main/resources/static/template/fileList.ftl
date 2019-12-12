@@ -11,7 +11,8 @@
             $.ajax({
                 type: "post",
                 url: "/disk/file/delete/file",
-                data: "file=" + fileName,
+                data: JSON.stringify({file:fileName}),
+                contentType: "application/json;charset=UTF-8",
                 success: function () {
                     window.location.reload();
                 },
@@ -41,24 +42,5 @@
         </#list>
     </ul>
 </div>
-<script>
-    $('#fileForm').on('submit', function(event){
-        event.preventDefault(); //阻止form表单默认提交
-        formSubmit();
-    });
-    function formSubmit () {
-        var formData = new FormData();
-        formData.append("file", $("#fileField")[0].files[0]);
-        $.ajax({
-            type: "post",
-            url: "/disk/file/upload/file",
-            data: formData,
-            processData: false,
-            success:function() {
-                window.location.reload();
-            }
-        });
-    }
-</script>
 </body>
 </html>

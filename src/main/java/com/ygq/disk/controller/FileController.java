@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -79,12 +80,24 @@ public class FileController {
 	}
 
 	@RequestMapping("delete/{type}")
-	public void delete(HttpServletRequest req, String file, @PathVariable String type) {
-		logger.info("delete file:{}, request from:{}", file, req.getRemoteAddr());
-		File localFile = new File(diskDir + type + File.separator +  file);
+	public void delete(HttpServletRequest req, @RequestBody DiskFile diskFile, @PathVariable String type) {
+		logger.info("delete file:{}, request from:{}", diskFile.getFile(), req.getRemoteAddr());
+		File localFile = new File(diskDir + type + File.separator +  diskFile.getFile());
 		if (localFile.exists()) {
 			localFile.delete();
 		}
 	}
 
+}
+
+class DiskFile {
+	private String file;
+
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
 }

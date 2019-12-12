@@ -17,7 +17,8 @@
                 $.ajax({
                     type: "post",
                     url: "/disk/file/delete/picture",
-                    data: "file=" + fileName,
+                    data: JSON.stringify({file:fileName}),
+                    contentType: "application/json;charset=UTF-8",
                     success: function () {
                         window.location.reload();
                     },
